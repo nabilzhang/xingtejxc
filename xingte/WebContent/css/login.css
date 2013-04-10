@@ -1,0 +1,91 @@
+div,body,label {
+	padding: 0;
+	margin: 0;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+}
+
+* {
+	font-family: Microsoft YaHei, sans-serif, "微软雅黑";
+	font-size: 12px;
+}
+
+body {
+	background: #1065a6;
+}
+
+.box {
+	
+}
+
+#maincontainer {
+	margin: 0 auto;
+	width: 900px;
+}
+
+#top {
+	background: url(../images/tbg.gif);
+	height: 211px;
+}
+
+#middle {
+	height: 234px;
+	background: url(../images/mbg.gif);
+}
+
+#bottom {
+	height: 138px;
+	background: url(../images/bbg.gif);
+}
+
+#loginContent {
+	width: 450px;
+	margin: 0 auto;
+}
+
+#loginContent .form-item {
+	padding: 20px;
+	padding-bottom: 10px;
+}
+
+#loginContent .form-item label {
+	font-size: 25px;
+	color: #444;
+}
+
+#loginContent .form-item .textbox {
+	width: 280px;
+	height: 25px;
+	font-size: 18px;
+	font-weight: bolder;
+	color: #444;
+	border: 1px #444 solid;
+}
+
+#loginContent .form-item .formbuttondiv {
+	width: 100px;
+	float: left;
+	margin: 0 50px;
+}
+
+#loginContent .form-item .formbutton {
+	background: url(../images/loginbt.png);
+	display: block;
+	width: 100px;
+	height: 34px;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+	color: #fff;
+	font-weight: bolder;
+}
+
+#loginContent .form-item .formbuttonshadow {
+	background: url(../images/buttonshadow.png) repeat-x;
+	height: 50px;
+	width: 98px;
+	margin: 2px auto;
+}

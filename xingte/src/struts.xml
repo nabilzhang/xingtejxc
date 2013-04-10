@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="default" namespace="/" extends="struts-default">
+		<interceptors>
+			<interceptor name="indexinterceptor"
+				class="org.xingte.jxc.Interceptors.IndexInterceptor">
+			</interceptor>
+		</interceptors>
+
+		<default-action-ref name="index"></default-action-ref>
+		<action name="index" class="org.xingte.jxc.actions.IndexAction">
+			<interceptor-ref name="indexinterceptor"></interceptor-ref>
+			<result name="success">/index.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">ajaxlogin</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+	</package>
+
+	<!-- Add packages here -->
+	<!-- 下面为登录所用到的action配置 -->
+	<package name="User" namespace="/" extends="struts-default">
+		<action name="ajaxlogin">
+			<result>/ajaxlogin.jsp</result>
+		</action>
+
+		<action name="login">
+			<result>/login.jsp</result>
+		</action>
+
+		<action name="logon" class="org.xingte.jxc.actions.LoginAction"
+			method="execute">
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="failed" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="User" class="org.xingte.jxc.actions.UserAction">
+			<result name="quit" type="redirectAction">
+				<param name="actionName">ajaxlogin</param>
+				<param name="namespace">/</param>
+			</result>
+
+		</action>
+	</package>
+
+	<package name="json" namespace="/json" extends="json-default">
+		<action name="ajaxlogon" class="org.xingte.jxc.actions.AjaxLoginAction"
+			method="execute">
+			<result name="success" type="json">
+				result
+			</result>
+		</action>
+	</package>
+	<!-- 基础信息部分 -->
+	<package name="baseinfo" namespace="/baseinfo" extends="json-default">
+		<action name="reAreaList" class="org.xingte.jxc.actions.AreaAction"
+			method="reAreaList">
+			<result name="success" type="json">
+				<param name="includeProperties"></param>
+			</result>
+		</action>
+		<action name="addArea" class="org.xingte.jxc.actions.AddAreaAction"
+			method="excute">
+			<result name="success" type="json">
+				<param name="includeProperties">result</param>
+			</result>
+		</action>
+		<!-- 部门action -->
+		<action name="Department" class="org.xingte.jxc.actions.DepartmentAction">
+			<result name="alldepartment" type="json">
+				<param name="includeProperties">
+
+				</param>
+			</result>
+		</action>
+		<!--添加部门action -->
+		<action name="AddDepartment" class="org.xingte.jxc.actions.AddDepartmentAction"
+			method="AddDepartment">
+			<result name="addDepartment" type="json">
+				<param name="includeProperties">
+					result
+				</param>
+			</result>
+		</action>
+		<!-- 所有职位列表 -->
+		<action name="AllPost" class="org.xingte.jxc.actions.PostAction"
+			method="getAllPost">
+			<result name="allpost" type="json">
+				<param name="includeProperties">
+
+				</param>
+			</result>
+		</action>
+		<!-- 添加职位信息 -->
+		<action name="AddPost" class="org.xingte.jxc.actions.AddPostAction"
+			method="addPost">
+			<result name="addpost" type="json">
+				<param name="includeProperties">
+					result
+				</param>
+			</result>
+		</action>
+		<!-- 所有职员 -->
+		<action name="PersonnelList" class="org.xingte.jxc.actions.PersonnelAction"
+			method="getAllPersonnels">
+			<result name="getallpersonnels" type="json" />
+		</action>
+		<!-- 添加职员 -->
+		<action name="AddPersonnel" class="org.xingte.jxc.actions.AddPersonnelAction"
+			method="Add">
+			<result name="add" type="json">
+				<param name="includeProperties">
+					result
+				</param>
+			</result>
+		</action>
+		<!-- 所有客户 -->
+		<action name="CustomerList" class="org.xingte.jxc.actions.CustomerAction"
+			method="getAllCustomers">
+			<result name="allcustomers" type="json" />
+		</action>
+		<!-- 添加客户 -->
+		<action name="AddCustomer" class="org.xingte.jxc.actions.AddCustomerAction"
+			method="add">
+			<result name="add" type="json">
+				<param name="includeProperties">
+					result
+				</param>
+			</result>
+		</action>
+		<!-- 所有供货商 -->
+		<action name="SupplierList" class="org.xingte.jxc.actions.SupplierAction"
+			method="getAllSupplier">
+			<result name="all" type="json" />
+		</action>
+
+		<!-- 添加供货商 -->
+		<action name="AddSupplier" class="org.xingte.jxc.actions.AddSupplierAction"
+			method="add">
+			<result name="add" type="json">
+				<param name="includeProperties">
+					result
+				</param>
+			</result>
+		</action>
+
+		<!-- 所有商品分类 -->
+		<action name="ProCatalogList" class="org.xingte.jxc.actions.ProCatalogAction"
+			method="getAllProCatalog">
+			<result name="all" type="json" />
+		</action>
+		<!-- 添加商品分类 -->
+		<action name="AddProCatalog" class="org.xingte.jxc.actions.AddProCatalogAction"
+			method="addCatalog">
+			<result name="add" type="json">
+				<param name="includeProperties">
+					result
+				</param>
+			</result>
+		</action>
+		<!-- 所有商品 -->
+		<action name="ProductList" class="org.xingte.jxc.actions.ProductAction"
+			method="getAllProducts">
+			<result name="all" type="json" />
+		</action>
+		<!-- 添加商品 -->
+		<action name="AddProduct" class="org.xingte.jxc.actions.AddProductAction"
+			method="addProduct">
+			<result name="add" type="json" />
+		</action>
+		<!-- 用户组列表 -->
+		<action name="UserGroupList" class="org.xingte.jxc.actions.UserGroupAction"
+			method="getAllUserGroupDTOs">
+			<result name="all" type="json" />
+		</action>
+
+		<!-- 用户列表 -->
+		<action name="UserList" class="org.xingte.jxc.actions.UserListAction"
+			method="returnList">
+			<result name="all" type="json" />
+		</action>
+		<!-- 添加用户 -->
+		<action name="AddUser" class="org.xingte.jxc.actions.AddUserAction"
+			method="addUser">
+			<result name="add" type="json" />
+		</action>
+	</package>
+	<!-- 采购管理 -->
+	<package name="purchase" namespace="/purchase" extends="json-default">
+		<!-- 采购订单列表 -->
+		<action name="PurchaseOrderList" class="org.xingte.jxc.purchase.actions.PurchaseAction"
+			method="getAllPurchaseOrders">
+			<result name="all" type="json" />
+		</action>
+		<action name="PurchaseOrderItemList"
+			class="org.xingte.jxc.purchase.actions.PurchaseItemAction" method="GetPurchaseItemList">
+			<result name="all" type="json" />
+		</action>
+		<action name="AddPurchaseOrder"
+			class="org.xingte.jxc.purchase.actions.AddPurchaseAction" method="addOrder">
+			<result name="add" type="json" />
+		</action>
+	</package>
+	<!-- 销售管理 -->
+	<package name="sell" namespace="/sell" extends="json-default">
+		<!-- 销售订单列表 -->
+		<action name="SellOrderList" class="org.xingte.jxc.sell.actions.SellOrderAction"
+			method="getAll">
+			<result name="all" type="json" />
+		</action>
+
+	</package>
+	<!-- 库存管理 -->
+	<package name="stock" namespace="/stock" extends="json-default">
+		<!-- 入库列表 -->
+		<action name="InStoreList" class="org.xingte.jxc.stock.actions.InStoreAction"
+			method="getAll">
+			<result name="all" type="json" />
+		</action>
+		<!-- 出库列表 -->
+		<action name="OutStoreList" class="org.xingte.jxc.stock.actions.OutStoreAction"
+			method="getAll">
+			<result name="all" type="json" />
+		</action>
+	</package>
+
+	<package name="useroper" namespace="/useroper" extends="json-default">
+		<action name="user" class="org.xingte.jxc.actions.UserAction"
+			method="CurrentUser">
+			<result name="current" type="json">
+				<param name="includeProperties">
+				</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

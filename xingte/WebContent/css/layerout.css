@@ -1,0 +1,49 @@
+/*
+*通用
+*/
+.fright {
+	float: right;
+}
+
+a {
+	color: #000;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+/*
+*顶部
+*/
+#header {
+	height: 80px;
+	width: 100%;
+	background: url(../images/hrightbg.png) repeat-x;
+}
+
+#header .hleft {
+	float: left;
+	width: 250px;
+	background: url(../images/hleftbg.png);
+	height: 80px;
+}
+
+#header .hright {
+	float: left;
+	height: 80px;
+	text-align: right;
+}
+
+#header .fright a {
+	color: #fff;
+}
+
+#header #topright {
+	padding-top: 50px;
+	padding-right: 60px;
+}
+
+.clear {
+	clear: both;
+}
